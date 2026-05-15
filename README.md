@@ -1,73 +1,153 @@
-# React + TypeScript + Vite
+# Password Strength Meter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application built with Vite, Vitest, and React Testing Library following the Test Driven Development (TDD) workflow.
 
-Currently, two official plugins are available:
+This project evaluates password strength in real time based on different validation rules and provides visual feedback through text, emojis, colors, and a progress bar.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* Real-time password strength evaluation
+* Dynamic visual feedback
+* Progress bar indicator
+* Accessible form elements
+* Unit testing with Vitest
+* Component testing with React Testing Library
+* Coverage reports
+* GitHub Actions CI workflow
+* TypeScript support
+* ESLint configuration
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Password Strength Rules
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+The password strength is determined using the following rules:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+| Condition                                             | Strength     |
+| ----------------------------------------------------- | ------------ |
+| Empty password                                        | `vacía`      |
+| Less than 8 characters                                | `débil`      |
+| 8+ characters without numbers or symbols              | `media`      |
+| 8+ characters with at least one number                | `fuerte`     |
+| 8+ characters with at least one number and one symbol | `muy fuerte` |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## Tech Stack
+
+* React
+* TypeScript
+* Vite
+* Vitest
+* React Testing Library
+* Bun
+* ESLint
+
+---
+
+## Installation
+
+Clone the repository and install dependencies:
+
+```bash
+bun install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Run Development Server
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+bun run dev
 ```
+
+The app will run locally at:
+
+```txt
+http://localhost:5173
+```
+
+---
+
+## Run Tests
+
+```bash
+bun run test
+```
+
+---
+
+## Run Coverage Report
+
+```bash
+bun run test:coverage
+```
+
+---
+
+## Run Linter
+
+```bash
+bun run lint
+```
+
+---
+
+## Project Structure
+
+```txt
+src/
+├── components/
+│   ├── PasswordStrengthMeter.tsx
+│   └── PasswordStrengthMeter.test.tsx
+│
+├── utils/
+│   ├── calculatePasswordStrength.ts
+│   └── calculatePasswordStrength.test.ts
+```
+
+---
+
+## TDD Workflow
+
+This project was developed following the Test Driven Development (TDD) cycle:
+
+1. Write failing tests
+2. Run tests and verify failures
+3. Commit failing tests
+4. Implement functionality
+5. Refactor while keeping tests green
+
+The commit history reflects this workflow.
+
+---
+
+## Accessibility
+
+The project uses accessible labels and semantic queries in tests through React Testing Library.
+
+Example:
+
+```ts
+screen.getByLabelText(/contraseña/i)
+```
+
+---
+
+## Continuous Integration
+
+GitHub Actions is configured to automatically:
+
+* install dependencies
+* run lint
+* run tests
+
+on every push and pull request.
+
+---
+
+## Author
+
+Developed by Alejandro Pérez.
