@@ -29,4 +29,13 @@ describe("PasswordStrengthMeter", () => {
 
     expect(screen.getByText("débil")).toBeInTheDocument();
   });
+
+  it("renders an accessible password input", () => {
+  render(<PasswordStrengthMeter />);
+
+  expect(
+    screen.getByLabelText(/contraseña/i)
+  ).toBeInTheDocument();
+  });
+
 });

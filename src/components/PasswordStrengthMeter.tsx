@@ -10,14 +10,15 @@ export default function PasswordStrengthMeter() {
     <div>
       <label htmlFor="password">Contraseña</label>
 
-      <input
+        <input
         id="password"
         type="password"
+        aria-describedby="password-strength"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-      />
+        />
 
-      <p>{strength}</p>
+        <p id="password-strength">{strength}</p>
     </div>
   );
 }
