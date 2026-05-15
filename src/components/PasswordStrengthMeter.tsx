@@ -6,6 +6,22 @@ export default function PasswordStrengthMeter() {
 
   const strength = calculatePasswordStrength(password);
 
+  const strengthEmoji = {
+    "vacía": "🫥",
+    "débil": "😬",
+    "media": "🥱",
+    "fuerte": "😎",
+    "muy fuerte": "🔥"
+  }
+
+  const strengthColor = {
+  "vacía": "#9ca3af",
+  "débil": "#ef4444",
+  "media": "#f59e0b",
+  "fuerte": "#3b82f6",
+  "muy fuerte": "#10b981",
+};
+
   return (
     <div>
       <label htmlFor="password">Contraseña</label>
@@ -18,7 +34,15 @@ export default function PasswordStrengthMeter() {
         onChange={(e) => setPassword(e.target.value)}
         />
 
-        <p id="password-strength">{strength}</p>
+        <p
+          id="password-strength"
+          className="strength"
+          style={{
+            color: strengthColor[strength],
+          }}
+        >
+          {strengthEmoji[strength]} {strength}
+        </p>
 
         <progress
             value={
