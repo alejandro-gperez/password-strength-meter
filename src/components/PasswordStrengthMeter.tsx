@@ -19,6 +19,21 @@ export default function PasswordStrengthMeter() {
         />
 
         <p id="password-strength">{strength}</p>
+
+        <progress
+            value={
+                strength === "vacía"
+                ? 0
+                : strength === "débil"
+                ? 1
+                : strength === "media"
+                ? 2
+                : strength === "fuerte"
+                ? 3
+                : 4
+            }
+            max={4}
+         />
     </div>
   );
 }

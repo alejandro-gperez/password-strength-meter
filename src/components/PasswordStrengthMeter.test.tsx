@@ -38,4 +38,19 @@ describe("PasswordStrengthMeter", () => {
   ).toBeInTheDocument();
   });
 
+  it("updates progress bar value", async () => {
+  const user = userEvent.setup();
+
+  render(<PasswordStrengthMeter />);
+
+  const input = screen.getByLabelText(/contraseña/i);
+
+  await user.type(input, "abcdef1!");
+
+  expect(screen.getByRole("progressbar")).toHaveAttribute(
+    "value",
+    "4"
+  );
+  });
+
 });
