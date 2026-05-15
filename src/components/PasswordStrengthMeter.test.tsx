@@ -8,7 +8,7 @@ describe("PasswordStrengthMeter", () => {
     render(<PasswordStrengthMeter />);
 
     expect(
-      screen.getByRole("textbox")
+      screen.getByLabelText(/contraseña/i)
     ).toBeInTheDocument();
   });
 
@@ -23,7 +23,7 @@ describe("PasswordStrengthMeter", () => {
 
     render(<PasswordStrengthMeter />);
 
-    const input = screen.getByRole("textbox");
+    const input = screen.getByLabelText(/contraseña/i);
 
     await user.type(input, "abc");
 
